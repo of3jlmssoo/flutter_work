@@ -81,7 +81,8 @@ class _ExpenceInputState extends State<ExpenceInput> {
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
-                        textStyle: const TextStyle(fontSize: 14),
+                        // textStyle: const TextStyle(fontSize: 14),
+                        textStyle: const TextStyle(fontSize: 12),
                         initialSelection: expenceTypeList.first,
                         onSelected: (String? value) {
                           setState(() {
@@ -182,7 +183,7 @@ class _ExpenceInputState extends State<ExpenceInput> {
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
-                        textStyle: const TextStyle(fontSize: 14),
+                        textStyle: const TextStyle(fontSize: 12),
                         initialSelection: taxTypeList.first,
                         onSelected: (String? value) {
                           setState(() {
