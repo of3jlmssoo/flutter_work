@@ -34,7 +34,7 @@ class _ExpenceInputState extends State<ExpenceInput> {
   }
 
   static const List<String> expenceTypeList = <String>[
-    '交通費',
+    '交通費直',
     'その他',
     '直',
     'Four'
@@ -99,6 +99,7 @@ class _ExpenceInputState extends State<ExpenceInput> {
                         dropdownMenuEntries: expenceTypeList
                             .map<DropdownMenuEntry<String>>((String value) {
                           return DropdownMenuEntry<String>(
+                            style: ButtonStyle(textStyle: MaterialStateTextStyle.resolveWith((states) => TextStyle(fontSize: 10,fontFamily: 'MPLUSRounded') )),
                               value: value, label: value);
                         }).toList(),
                       ),
@@ -220,6 +221,7 @@ class _ExpenceInputState extends State<ExpenceInput> {
                         dropdownMenuEntries: taxTypeList
                             .map<DropdownMenuEntry<String>>((String value) {
                           return DropdownMenuEntry<String>(
+                            style: ButtonStyle(textStyle: MaterialStateTextStyle.resolveWith((states) => TextStyle(fontSize: 10,fontFamily: 'MPLUSRounded') )),
                               value: value, label: value);
                         }).toList(),
                       ),
