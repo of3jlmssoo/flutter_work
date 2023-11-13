@@ -58,10 +58,16 @@ void main() {
     debugPrint(
         '[${rec.loggerName}] ${rec.level.name}: ${rec.time}: ${rec.message}');
   });
-  runApp(const MaterialApp(
-    title: 'Navigation Basics',
-    home: MyApp(),
-  ));
+  runApp(
+    MyApp(),
+    // MaterialApp(
+    //   theme: ThemeData(
+    //     fontFamily: 'MPLUSRounded',
+    //   ),
+    //   title: 'Navigation Basics',
+    //   home: MyApp(),
+    // ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -69,8 +75,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: _router,
+    return MaterialApp(
+      // locale: Locale('ja'),
+      theme: ThemeData(
+        fontFamily: 'MPLUSRounded',
+        textTheme: const TextTheme(
+          bodyLarge: TextStyle(fontFamily: 'MPLUSRounded'),
+          bodyMedium: TextStyle(fontFamily: 'MPLUSRounded'),
+          headlineMedium: TextStyle(fontFamily: 'MPLUSRounded'),
+          headlineSmall: TextStyle(fontFamily: 'MPLUSRounded'),
+          titleLarge: TextStyle(fontFamily: 'MPLUSRounded'),
+          titleMedium: TextStyle(fontFamily: 'MPLUSRounded'),
+          titleSmall: TextStyle(fontFamily: 'MPLUSRounded'),
+          bodySmall: TextStyle(fontFamily: 'MPLUSRounded'),
+          labelLarge: TextStyle(fontFamily: 'MPLUSRounded'),
+          labelSmall: TextStyle(fontFamily: 'MPLUSRounded'),
+        ),
+      ),
+      home: MaterialApp.router(
+        routerConfig: _router,
+      ),
     );
   }
 }
@@ -195,6 +219,14 @@ class _FirstRouteState extends State<FirstRoute> {
                 context.go('/expinput');
               },
             ),
+            const SizedBox(height: 5),
+            const Text(
+              "直感的",
+              style: TextStyle(
+                fontFamily: 'MPLUSRounded',
+                fontSize: 50,
+              ),
+            )
           ],
         ),
       ),

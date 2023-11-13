@@ -25,8 +25,8 @@ class _ExpenceInputState extends State<ExpenceInput> {
         context: context,
         initialDate: _date,
         firstDate: new DateTime(2016),
-        lastDate: new DateTime.now().add(new Duration(days: 360)));
-    // if (picked != null) setState(() => _date = picked);
+        lastDate: new DateTime.now().add(new Duration(
+            days: 360))); // if (picked != null) setState(() => _date = picked);
     if (picked != null)
       return picked;
     else
@@ -50,7 +50,12 @@ class _ExpenceInputState extends State<ExpenceInput> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sample Code'),
+        title: const Text(
+          style: TextStyle(
+            fontFamily: 'MPLUSRounded',
+          ),
+          'Sample Code',
+        ),
       ),
       body: Form(
         key: _formKey,
@@ -66,8 +71,14 @@ class _ExpenceInputState extends State<ExpenceInput> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('経費種別',
-                          style: Theme.of(context).textTheme.bodyLarge),
+                      const Text(
+                        '経費種別',
+                        // style: Theme.of(context).textTheme.bodyLarge,
+                        style: TextStyle(
+                          fontFamily: 'MPLUSRounded',
+                        ),
+                      ),
+
                       DropdownMenu<String>(
                         trailingIcon:
                             const Icon(Icons.arrow_drop_down, size: 10),
@@ -76,13 +87,14 @@ class _ExpenceInputState extends State<ExpenceInput> {
                           // contentPadding:
                           //     const EdgeInsets.symmetric(horizontal: 16),
                           constraints:
-                              BoxConstraints.tight(const Size.fromHeight(40)),
+                              BoxConstraints.tight(const Size.fromHeight(45)),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
                         // textStyle: const TextStyle(fontSize: 14),
-                        textStyle: const TextStyle(fontSize: 12),
+                        textStyle: const TextStyle(
+                            fontSize: 12, fontFamily: 'MPLUSRounded'),
                         initialSelection: expenceTypeList.first,
                         onSelected: (String? value) {
                           setState(() {
@@ -97,9 +109,12 @@ class _ExpenceInputState extends State<ExpenceInput> {
                       ),
                       // ),
                       const SizedBox(height: 20),
-                      Text(
+                      const Text(
                         '日付',
-                        style: Theme.of(context).textTheme.bodyLarge,
+                        // style: Theme.of(context).textTheme.bodyLarge,
+                        style: TextStyle(
+                          fontFamily: 'MPLUSRounded',
+                        ),
                       ),
 
                       Row(
@@ -118,7 +133,12 @@ class _ExpenceInputState extends State<ExpenceInput> {
                           //   ],
                           // ),
                           TextButton(
-                            child: const Text('日付指定'),
+                            child: const Text(
+                              '日付指定',
+                              style: TextStyle(
+                                fontFamily: 'MPLUSRounded',
+                              ),
+                            ),
                             onPressed: () async {
                               final selectedDate = await showDatePicker(
                                 context: context,
@@ -138,7 +158,11 @@ class _ExpenceInputState extends State<ExpenceInput> {
                       const SizedBox(height: 20),
                       InputDetails(inputType: InputType.transportation),
                       const SizedBox(height: 20),
-                      Text('金額', style: Theme.of(context).textTheme.bodyLarge),
+                      const Text(
+                        '金額',
+                        style: TextStyle(fontFamily: 'MPLUSRounded'),
+                        // style: Theme.of(context).textTheme.bodyLarge,
+                      ),
                       TextFormField(
                         textAlign: TextAlign.right,
                         decoration: const InputDecoration(
@@ -150,9 +174,10 @@ class _ExpenceInputState extends State<ExpenceInput> {
                         },
                       ),
                       const SizedBox(height: 20),
-                      Text(
+                      const Text(
                         'メモ',
-                        style: Theme.of(context).textTheme.bodyLarge,
+                        style: TextStyle(fontFamily: 'MPLUSRounded'),
+                        // style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       TextFormField(
                         decoration: const InputDecoration(
@@ -168,8 +193,11 @@ class _ExpenceInputState extends State<ExpenceInput> {
                       ),
 
                       const SizedBox(height: 20),
-                      Text('税タイプ',
-                          style: Theme.of(context).textTheme.bodyLarge),
+                      const Text(
+                        '税タイプ',
+                        style: TextStyle(fontFamily: 'MPLUSRounded'),
+                        // style: Theme.of(context).textTheme.bodyLarge),
+                      ),
                       DropdownMenu<String>(
                         trailingIcon:
                             const Icon(Icons.arrow_drop_down, size: 10),
@@ -178,12 +206,15 @@ class _ExpenceInputState extends State<ExpenceInput> {
                           // contentPadding:
                           //     const EdgeInsets.symmetric(horizontal: 16),
                           constraints:
-                              BoxConstraints.tight(const Size.fromHeight(40)),
+                              BoxConstraints.tight(const Size.fromHeight(45)),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
-                        textStyle: const TextStyle(fontSize: 12),
+                        textStyle: const TextStyle(
+                          fontSize: 12,
+                          fontFamily: 'MPLUSRounded',
+                        ),
                         initialSelection: taxTypeList.first,
                         onSelected: (String? value) {
                           setState(() {
@@ -316,7 +347,11 @@ class InputDetails extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('乗車地', style: Theme.of(context).textTheme.bodyLarge),
+              const Text(
+                '乗車地',
+                style: TextStyle(fontFamily: 'MPLUSRounded'),
+                // style: Theme.of(context).textTheme.bodyLarge,
+              ),
               TextFormField(
                 decoration: const InputDecoration(
                   // filled: true,
@@ -335,7 +370,11 @@ class InputDetails extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('降車地', style: Theme.of(context).textTheme.bodyLarge),
+              const Text(
+                '降車地',
+                style: TextStyle(fontFamily: 'MPLUSRounded'),
+                // style: Theme.of(context).textTheme.bodyLarge,
+              ),
               TextFormField(
                 decoration: const InputDecoration(
                   // filled: true,
