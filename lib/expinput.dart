@@ -36,15 +36,10 @@ class _ExpenceInputState extends State<ExpenceInput> {
   static const List<String> expenceTypeList = <String>[
     '交通費',
     'その他',
-    'Three',
+    '直',
     'Four'
   ];
-  static const List<String> taxTypeList = <String>[
-    'one',
-    'two',
-    'Three',
-    'Four'
-  ];
+  static const List<String> taxTypeList = <String>['one', 'two', 'Three', '直'];
 
   @override
   Widget build(BuildContext context) {
@@ -156,7 +151,8 @@ class _ExpenceInputState extends State<ExpenceInput> {
                         ],
                       ),
                       const SizedBox(height: 20),
-                      InputDetails(inputType: InputType.transportation),
+                      // InputDetails(inputType: InputType.transportation),
+                      InputDetails(inputType: InputType.other),
                       const SizedBox(height: 20),
                       const Text(
                         '金額',
@@ -340,72 +336,102 @@ class InputDetails extends StatelessWidget {
   final InputType inputType;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                '乗車地',
-                style: TextStyle(fontFamily: 'MPLUSRounded'),
-                // style: Theme.of(context).textTheme.bodyLarge,
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  // filled: true,
-                  border: OutlineInputBorder(),
+    if (inputType == InputType.transportation) {
+      return Row(
+        children: [
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  '乗車地',
+                  style: TextStyle(fontFamily: 'MPLUSRounded'),
+                  // style: Theme.of(context).textTheme.bodyLarge,
                 ),
-                onChanged: (value) {
-                  log.info('input: value:$value');
-                },
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(width: 3),
-        Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                '降車地',
-                style: TextStyle(fontFamily: 'MPLUSRounded'),
-                // style: Theme.of(context).textTheme.bodyLarge,
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  // filled: true,
-                  border: OutlineInputBorder(),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    // filled: true,
+                    border: OutlineInputBorder(),
+                  ),
+                  onChanged: (value) {
+                    log.info('input: value:$value');
+                  },
                 ),
-                onChanged: (value) {
-                  log.info('input: value:$value');
-                },
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        // SizedBox(width: 5),
-        const SizedBox(width: 0),
-        SizedBox(
-          height: 60,
-          width: 23,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              IconButton(
-                onPressed: () {
-                  log.info("favorite pressed");
-                },
-                iconSize: 23,
-                icon: const Icon(Icons.favorite_border, size: 25),
-              ),
-            ],
+          const SizedBox(width: 3),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  '降車地',
+                  style: TextStyle(fontFamily: 'MPLUSRounded'),
+                  // style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    // filled: true,
+                    border: OutlineInputBorder(),
+                  ),
+                  onChanged: (value) {
+                    log.info('input: value:$value');
+                  },
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
-    );
+          // SizedBox(width: 5),
+          const SizedBox(width: 0),
+          SizedBox(
+            height: 60,
+            width: 23,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    log.info("favorite pressed");
+                  },
+                  iconSize: 23,
+                  icon: const Icon(Icons.favorite_border, size: 25),
+                ),
+              ],
+            ),
+          ),
+        ],
+      );
+    } else {
+      return Row(
+        children: [
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  '費用項目',
+                  style: TextStyle(fontFamily: 'MPLUSRounded'),
+                  // style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    // filled: true,
+                    border: OutlineInputBorder(),
+                  ),
+                  onChanged: (value) {
+                    log.info('input: value:$value');
+                  },
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 3),
+        ],
+      );
+    }
   }
 }
