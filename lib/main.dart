@@ -1,3 +1,6 @@
+//  firebase emulators:start --import=./dir --export-on-exit
+//
+//
 // import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -12,6 +15,11 @@ import 'firestore_data.dart';
 import 'firestore_listview.dart';
 import 'listviews.dart';
 import 'textfielddropdown.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:flutter/foundation.dart';
 
 final log = Logger('MainLogger');
 
@@ -52,21 +60,30 @@ final _router = GoRouter(
   ],
 );
 
-void main() {
+void main() async {
   Logger.root.level = Level.ALL; // defaults to Level.INFO
   Logger.root.onRecord.listen((LogRecord rec) {
     debugPrint(
         '[${rec.loggerName}] ${rec.level.name}: ${rec.time}: ${rec.message}');
   });
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  if (kDebugMode) {
+    try {
+      FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
+      await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+    } catch (e) {
+      // ignore: avoid_print
+      print(e);
+    }
+  }
+
   runApp(
     MyApp(),
-    // MaterialApp(
-    //   theme: ThemeData(
-    //     fontFamily: 'MPLUSRounded',
-    //   ),
-    //   title: 'Navigation Basics',
-    //   home: MyApp(),
-    // ),
   );
 }
 
